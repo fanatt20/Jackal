@@ -8,13 +8,12 @@ using JackalEngine.Map;
 
 namespace JackalEngine
 {
-    public class Game
+    public enum Side
     {
-
-
-
-
-
+        Right = 0,
+        Left,
+        Up,
+        Down
     }
     public enum CellType
     {
@@ -25,10 +24,114 @@ namespace JackalEngine
         WithCharacter,
         CharacterWithGold
     }
+    public class TurnInfo
+    {
+        public int CharacterID { get; set; }
+        public Side MovingSide { get; set; }
+        private TurnInfo() { }
+        public TurnInfo(int charID, Side moveTo)
+        {
+            CharacterID = charID;
+            MovingSide = moveTo;
+
+        }
+
+    }
+    internal class Character
+    {
+        public int XCoordinate { get; private set; }
+        public int YCoordinate { get; private set; }
+        public Cell CurrentCell;
+        private Character() { }
+        public Character(int xCoordinate, int yCoordinate)
+        {
+            CurrentCell = new Cell(CellType.Water);
+            XCoordinate = xCoordinate;
+            YCoordinate = yCoordinate;
+        }
+        public bool MoveTo(Side side)
+        {
+            if ((side == Side.Down && YCoordinate > (GameMap._ySize - 2)) ||
+                (side == Side.Up && YCoordinate < 1) ||
+                (side == Side.Right && XCoordinate > (GameMap._xSize - 2)) ||
+                (side == Side.Left && XCoordinate < 1))
+                return false;
+            switch (side)
+            {
+                case Side.Down:
+                    YCoordinate += 1;
+                    break;
+                case Side.Up:
+                    YCoordinate -= 1;
+                    break;
+                case Side.Left:
+                    XCoordinate -= 1;
+                    break;
+                case Side.Right:
+                    XCoordinate += 1;
+                    break;
+                default:
+                    throw new NotImplementedException("sry");
+                    break;
+            }
+            return true;
+        }
+
+    }
+    public class Game
+    {
+
+        private GameMap map = new GameMap();
+        private List<Character> lst = new List<Character>();
+        public Game()
+        {
+            map[map.XSize / 2, 0] = new Cell(CellType.WithCharacter);
+            lst.Add(new Character(map.XSize / 2, 0));
+
+        }
+
+        public GameMap Move(TurnInfo info)
+        {
+            if (info.CharacterID >= lst.Count)
+                throw new ArgumentOutOfRangeException(String.Format("No Character with ID={0}", info.CharacterID));
+            Character ch = lst[info.CharacterID];
+            if (ch.MoveTo(info.MovingSide))
+            {
+                
+                switch (info.MovingSide)
+                {
+                    case Side.Right:
+                        map[ch.XCoordinate - 1, ch.YCoordinate] = ch.CurrentCell;
+                        break;
+                    case Side.Left:
+                        map[ch.XCoordinate + 1, ch.YCoordinate] = ch.CurrentCell;
+                        break;
+                    case Side.Up:
+                        map[ch.XCoordinate, ch.YCoordinate + 1] = ch.CurrentCell;
+                        break;
+                    case Side.Down:
+                        map[ch.XCoordinate, ch.YCoordinate - 1] = ch.CurrentCell;
+                        break;
+                    default:
+                        break;
+                }
+                ch.CurrentCell = map[ch.XCoordinate, ch.YCoordinate];
+                map[ch.XCoordinate, ch.YCoordinate] = new Cell(CellType.WithCharacter);
+            }
+
+
+            return map;
+        }
+
+
+    }
+
     public class GameMap
     {
         public const int _xSize = 10;
         public const int _ySize = 10;
+        public int XSize { get { return _xSize; } }
+        public int YSize { get { return _ySize; } }
         private Cell[,] map = new Cell[_xSize, _ySize];
         public GameMap()
         {
@@ -57,7 +160,13 @@ namespace JackalEngine
             {
                 return map[xCoord, yCoord];
             }
+            set
+            {
+                map[xCoord, yCoord] = value;
+            }
+
         }
+
     }
     public class Cell
     {

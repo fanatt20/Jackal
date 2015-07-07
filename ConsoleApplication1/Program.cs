@@ -10,42 +10,99 @@ namespace ConsoleApplication1
 {
     class Program
     {
+        class Exit : Exception { }
+
         static void Main(string[] args)
         {
-            GameMap map = new GameMap();
-            PrintMap(map);
+            TurnInfo info;
+            Game game = new Game();
+            try
+            {
+                while (true)
+                {
+                    info = WaitForTurn();
+                    PrintMap(game.Move(info));
+                }
+
+            }
+            catch (Exit)
+            {
+                Console.WriteLine("Exit");
+            }
             Console.ReadKey();
-           
+
+        }
+
+        private static TurnInfo WaitForTurn()
+        {
+            TurnInfo result;
+            Side side;
+        Repeat:
+            var key = Console.ReadKey();
+            switch (key.Key)
+            {
+                case ConsoleKey.Escape:
+                    throw new Exit();
+                    break;
+                case ConsoleKey.UpArrow:
+                    side = Side.Up;
+                    break;
+                case ConsoleKey.DownArrow:
+                    side = Side.Down;
+                    break;
+                case ConsoleKey.RightArrow:
+                    side = Side.Right;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    side = Side.Left;
+                    break;
+                default:
+                    goto Repeat;
+                    break;
+            }
+            return new TurnInfo(0, side);
         }
 
         private static void PrintMap(GameMap map)
         {
+            Console.Clear();
             for (int j = 0; j < GameMap._xSize; j++)
             {
                 for (int i = 0; i < GameMap._ySize; i++)
                 {
                     DrawCell(map[i, j]);
-                    
+
                 }
-                Console.WriteLine();                
+                Console.WriteLine();
             }
         }
 
         private static void DrawCell(Cell cell)
         {
-            char picture='0';
+            char picture = '0';
             switch (cell.Type)
             {
                 case CellType.Unreached:
-                    picture= '░';
+                    picture = '░';
                     break;
                 case CellType.Water:
-                    picture='▒';
+                    picture = '▒';
                     break;
-                
+                case CellType.WithGold:
+                    picture = '☼';
+                    break;
+                case CellType.Empty:
+                    picture = '○';
+                    break;
+                case CellType.WithCharacter:
+                    picture = '☺';
+                    break;
+                case CellType.CharacterWithGold:
+                    picture = '☻';
+                    break;
             }
             Console.Write(picture);
         }
-        
+
     }
 }

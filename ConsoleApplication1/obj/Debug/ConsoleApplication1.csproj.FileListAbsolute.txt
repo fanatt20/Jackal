@@ -9,3 +9,8 @@ C:\Users\Андрей\Documents\Visual Studio 2013\Projects\Jackal\ConsoleApplic
 C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
 C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\JackalEngine.dll
+C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\JackalEngine.pdb
