@@ -83,10 +83,42 @@ namespace JackalEngine
 
         private GameMap map = new GameMap();
         private List<Character> lst = new List<Character>();
-        public Game()
+        private event Action Fight;
+        private event Action OnGoldCell;
+        private void RestoreCell(GameMap map, Side side, Character ch)
         {
-            map[map.XSize / 2, 0] = new Cell(CellType.WithCharacter);
-            lst.Add(new Character(map.XSize / 2, 0));
+            switch (side)
+            {
+                case Side.Right:
+                    map[ch.XCoordinate - 1, ch.YCoordinate] = ch.CurrentCell;
+                    break;
+                case Side.Left:
+                    map[ch.XCoordinate + 1, ch.YCoordinate] = ch.CurrentCell;
+                    break;
+                case Side.Up:
+                    map[ch.XCoordinate, ch.YCoordinate + 1] = ch.CurrentCell;
+                    break;
+                case Side.Down:
+                    map[ch.XCoordinate, ch.YCoordinate - 1] = ch.CurrentCell;
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void SaveCurrentCell(GameMap map, Character ch)
+        {
+            ch.CurrentCell = map[ch.XCoordinate, ch.YCoordinate];
+        }
+
+
+        public Game(int charNumber)
+        {
+            for (int i = 0; i < charNumber; i++)
+            {
+                map[map.XSize / 2, i*(map.YSize-1)] = new Cell(CellType.WithCharacter);
+                lst.Add(new Character(map.XSize / 2, i * (map.YSize - 1)));
+            }
+
 
         }
 
@@ -97,31 +129,19 @@ namespace JackalEngine
             Character ch = lst[info.CharacterID];
             if (ch.MoveTo(info.MovingSide))
             {
-                
-                switch (info.MovingSide)
-                {
-                    case Side.Right:
-                        map[ch.XCoordinate - 1, ch.YCoordinate] = ch.CurrentCell;
-                        break;
-                    case Side.Left:
-                        map[ch.XCoordinate + 1, ch.YCoordinate] = ch.CurrentCell;
-                        break;
-                    case Side.Up:
-                        map[ch.XCoordinate, ch.YCoordinate + 1] = ch.CurrentCell;
-                        break;
-                    case Side.Down:
-                        map[ch.XCoordinate, ch.YCoordinate - 1] = ch.CurrentCell;
-                        break;
-                    default:
-                        break;
-                }
-                ch.CurrentCell = map[ch.XCoordinate, ch.YCoordinate];
+                RestoreCell(map, info.MovingSide, ch);
+                SaveCurrentCell(map, ch);
+
                 map[ch.XCoordinate, ch.YCoordinate] = new Cell(CellType.WithCharacter);
             }
 
 
             return map;
         }
+
+
+
+
 
 
     }

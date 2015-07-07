@@ -11,11 +11,11 @@ namespace ConsoleApplication1
     class Program
     {
         class Exit : Exception { }
-
+        static int player=0;
         static void Main(string[] args)
         {
             TurnInfo info;
-            Game game = new Game();
+            Game game = new Game(2);
             try
             {
                 while (true)
@@ -60,7 +60,7 @@ namespace ConsoleApplication1
                     goto Repeat;
                     break;
             }
-            return new TurnInfo(0, side);
+            return new TurnInfo(player==0?player++:player--, side);
         }
 
         private static void PrintMap(GameMap map)
@@ -92,7 +92,7 @@ namespace ConsoleApplication1
                     picture = '☼';
                     break;
                 case CellType.Empty:
-                    picture = '○';
+                    picture = '♠';
                     break;
                 case CellType.WithCharacter:
                     picture = '☺';
