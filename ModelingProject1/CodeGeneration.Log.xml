@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 12.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/CodeGenLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Журнал создания кода/преобразования текста">
+  <MessageClass Name="Message" Label="Сообщение" Option="Показывать информационные сообщения" />
+  <MessageClass Name="Warning" Label="Предупреждение" Option="Показывать предупреждения" />
+  <MessageClass Name="Error" Label="Ошибка" Option="Показывать ошибки" />
+  <MessageClass Name="Property" Label="Свойство" Option="Показывать метаданные" />
+  <MessageClass Name="Diagnostic" Label="Сообщение" Option="Показывать диагностические сообщения" />
+  <Message Timestamp="2015-04-18T14:48:48" Importance="High" Text="Запущено создание кода или преобразование текста." />
+  <Message Timestamp="2015-04-18T14:48:48" Importance="Diagnostic" Text="Имя = ClassTemplate" />
+  <Message Timestamp="2015-04-18T14:48:48" Importance="Diagnostic" Text="Перезаписать = True" />
+  <Message Timestamp="2015-04-18T14:48:48" Importance="Diagnostic" Text="ProjectPath = ..\ModelingProject1Lib\ModelingProject1Lib.csproj" />
+  <Message Timestamp="2015-04-18T14:48:48" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2015-04-18T14:48:48" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2015-04-18T14:48:48" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2015-04-18T14:48:48" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2015-04-18T14:48:48" Importance="Medium" Text="Привязка шаблона текста, принадлежащая ModelingProject1: &quot;ClassTemplate&quot; применит ClassTemplate.t4 к: &quot;ModelingProject1::Character&quot; -  (Class), &quot;ModelingProject1::Map::Cell&quot; -  (Class), &quot;ModelingProject1::Player&quot; -  (Class) " />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Medium" Text="&quot;ModelingProject1::Character&quot; -  (Class) : успешно (файл заменен) - c:\users\андрей\documents\visual studio 2013\Projects\Jackal\ModelingProject1Lib\GeneratedCode\Character.cs" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Medium" Text="&quot;ModelingProject1::Map::Cell&quot; -  (Class) : успешно (файл заменен) - c:\users\андрей\documents\visual studio 2013\Projects\Jackal\ModelingProject1Lib\GeneratedCode\Map\Cell.cs" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Medium" Text="&quot;ModelingProject1::Player&quot; -  (Class) : успешно (файл заменен) - c:\users\андрей\documents\visual studio 2013\Projects\Jackal\ModelingProject1Lib\GeneratedCode\Player.cs" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="Имя = EnumTemplate" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="Перезаписать = True" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="ProjectPath = ..\ModelingProject1Lib\ModelingProject1Lib.csproj" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Medium" Text="Привязка шаблона текста, принадлежащая ModelingProject1: &quot;EnumTemplate&quot; применит EnumTemplate.t4 к: &quot;ModelingProject1::Map::MapProperties&quot; -  (Enumeration) " />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Medium" Text="&quot;ModelingProject1::Map::MapProperties&quot; -  (Enumeration) : успешно (файл заменен) - c:\users\андрей\documents\visual studio 2013\Projects\Jackal\ModelingProject1Lib\GeneratedCode\Map\MapProperties.cs" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="Имя = StructTemplate" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="Перезаписать = True" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="ProjectPath = ..\ModelingProject1Lib\ModelingProject1Lib.csproj" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Medium" Text="Привязка шаблона текста, принадлежащая ModelingProject1: &quot;StructTemplate&quot; применит StructTemplate.t4 к: &quot;ModelingProject1::Character&quot; -  (Class), &quot;ModelingProject1::Map::Cell&quot; -  (Class), &quot;ModelingProject1::Player&quot; -  (Class) " />
+  <Message Timestamp="2015-04-18T14:48:49" Importance="Diagnostic" Text="&quot;ModelingProject1::Character&quot; -  (Class): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;StructTemplate.t4&quot; возвратил значение false." />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="&quot;ModelingProject1::Map::Cell&quot; -  (Class): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;StructTemplate.t4&quot; возвратил значение false." />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="&quot;ModelingProject1::Player&quot; -  (Class): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;StructTemplate.t4&quot; возвратил значение false." />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="Имя = Template1" />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="Перезаписать = True" />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="ProjectPath = ..\ModelingProject1Lib\ModelingProject1Lib.csproj" />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="TemplateFilePath = " />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="ResolvedTemplateFilePath = " />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Medium" Text="Привязка шаблона текста, принадлежащая ModelingProject1: &quot;Template1&quot; применит  к: &quot;ModelingProject1::Character&quot; -  (Class), &quot;ModelingProject1::Map::&quot; -  (Association), &quot;ModelingProject1::Map&quot; -  (Package), &quot;ModelingProject1::Map::Cell&quot; -  (Class), &quot;ModelingProject1::Map::MapProperties&quot; -  (Enumeration), &quot;ModelingProject1::Map::&quot; -  (Association), &quot;ModelingProject1::&quot; -  (Association), &quot;ModelingProject1::Player&quot; -  (Class) " />
+  <Error Timestamp="2015-04-18T14:48:50" Importance="High" Text="Следующее свойство пути к файлу шаблона для &quot;ModelingProject1::Character&quot; -  (Class) не существует: " />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="&quot;ModelingProject1::Character&quot; -  (Class): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;&quot; возвратил значение false." />
+  <Error Timestamp="2015-04-18T14:48:50" Importance="High" Text="Следующее свойство пути к файлу шаблона для &quot;ModelingProject1::Map::&quot; -  (Association) не существует: " />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="&quot;ModelingProject1::Map::&quot; -  (Association): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;&quot; возвратил значение false." />
+  <Error Timestamp="2015-04-18T14:48:50" Importance="High" Text="Следующее свойство пути к файлу шаблона для &quot;ModelingProject1::Map&quot; -  (Package) не существует: " />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="&quot;ModelingProject1::Map&quot; -  (Package): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;&quot; возвратил значение false." />
+  <Error Timestamp="2015-04-18T14:48:50" Importance="High" Text="Следующее свойство пути к файлу шаблона для &quot;ModelingProject1::Map::Cell&quot; -  (Class) не существует: " />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="&quot;ModelingProject1::Map::Cell&quot; -  (Class): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;&quot; возвратил значение false." />
+  <Error Timestamp="2015-04-18T14:48:50" Importance="High" Text="Следующее свойство пути к файлу шаблона для &quot;ModelingProject1::Map::MapProperties&quot; -  (Enumeration) не существует: " />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="&quot;ModelingProject1::Map::MapProperties&quot; -  (Enumeration): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;&quot; возвратил значение false." />
+  <Error Timestamp="2015-04-18T14:48:50" Importance="High" Text="Следующее свойство пути к файлу шаблона для &quot;ModelingProject1::Map::&quot; -  (Association) не существует: " />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="&quot;ModelingProject1::Map::&quot; -  (Association): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;&quot; возвратил значение false." />
+  <Error Timestamp="2015-04-18T14:48:50" Importance="High" Text="Следующее свойство пути к файлу шаблона для &quot;ModelingProject1::&quot; -  (Association) не существует: " />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="&quot;ModelingProject1::&quot; -  (Association): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;&quot; возвратил значение false." />
+  <Error Timestamp="2015-04-18T14:48:50" Importance="High" Text="Следующее свойство пути к файлу шаблона для &quot;ModelingProject1::Player&quot; -  (Class) не существует: " />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="Diagnostic" Text="&quot;ModelingProject1::Player&quot; -  (Class): файлы не созданы, поскольку метод AppliesToElement шаблона &quot;&quot; возвратил значение false." />
+  <Message Timestamp="2015-04-18T14:48:50" Importance="High" Text="Создание кода завершено. Ошибок: 8. Предупреждений: 0." />
+</Log>
