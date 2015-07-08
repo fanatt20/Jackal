@@ -22,7 +22,8 @@ namespace JackalEngine
         Empty,
         WithGold,
         WithCharacter,
-        CharacterWithGold
+        CharacterWithGold,
+        Ship
     }
     public class TurnInfo
     {
@@ -35,12 +36,16 @@ namespace JackalEngine
             MovingSide = moveTo;
 
         }
-
     }
     internal class Character
     {
+        public int Gold { get; private set; }
+        public int Death { get; private set; }
+        public void Die() { Death++; }
+        public void TakeGold() { Gold++;}
         public int XCoordinate { get; private set; }
         public int YCoordinate { get; private set; }
+        public bool WithGold { get; set; }
         public Cell CurrentCell;
         private Character() { }
         public Character(int xCoordinate, int yCoordinate)
@@ -48,6 +53,7 @@ namespace JackalEngine
             CurrentCell = new Cell(CellType.Water);
             XCoordinate = xCoordinate;
             YCoordinate = yCoordinate;
+            WithGold = false;
         }
         public bool MoveTo(Side side)
         {
@@ -76,15 +82,43 @@ namespace JackalEngine
             }
             return true;
         }
+        public bool OpositeMove(Side side)
+        {
+            if ((side == Side.Down && YCoordinate < 1) ||
+                (side == Side.Up && YCoordinate > (GameMap._ySize - 2)) ||
+                (side == Side.Right && XCoordinate < 1) ||
+                (side == Side.Left && XCoordinate > (GameMap._xSize - 2)))
+                return false;
+            switch (side)
+            {
+                case Side.Down:
+                    YCoordinate -= 1;
+                    break;
+                case Side.Up:
+                    YCoordinate += 1;
+                    break;
+                case Side.Left:
+                    XCoordinate += 1;
+                    break;
+                case Side.Right:
+                    XCoordinate -= 1;
+                    break;
+                default:
+                    throw new NotImplementedException("sry");
+                    break;
+            }
+            return true;
+        }
 
     }
     public class Game
     {
 
+        private int goldMapCapacity = 10;
+
         private GameMap map = new GameMap();
         private List<Character> lst = new List<Character>();
-        private event Action Fight;
-        private event Action OnGoldCell;
+
         private void RestoreCell(GameMap map, Side side, Character ch)
         {
             switch (side)
@@ -105,9 +139,45 @@ namespace JackalEngine
                     break;
             }
         }
+
         private void SaveCurrentCell(GameMap map, Character ch)
         {
+            int x = ch.XCoordinate;
+            int y = ch.YCoordinate;
+            if (map[x, y].Type == CellType.Unreached)
+                GenerateCell(map, x, y);
+            if (map[x, y].Type == CellType.WithGold)
+            {
+                if (!ch.WithGold)
+                {
+                    ch.WithGold = true;
+                    map[x, y] = new Cell(CellType.Empty);
+                }
+            }
+            if (map[x, y].Type == CellType.Ship && ch.WithGold)
+            {
+                ch.WithGold = false;
+                ch.TakeGold();
+            }
+
             ch.CurrentCell = map[ch.XCoordinate, ch.YCoordinate];
+        }
+
+        private void GenerateCell(GameMap map, int x, int y)
+        {
+            var rnd = new Random();
+            if (rnd.Next(6) == 0 && goldMapCapacity > 0)
+            {
+                goldMapCapacity--;
+                map[x, y] = new Cell(CellType.WithGold);
+            }
+            else
+            {
+                map[x, y] = new Cell(CellType.Empty);
+            }
+
+
+
         }
 
 
@@ -115,11 +185,18 @@ namespace JackalEngine
         {
             for (int i = 0; i < charNumber; i++)
             {
-                map[map.XSize / 2, i*(map.YSize-1)] = new Cell(CellType.WithCharacter);
+                map[map.XSize / 2, i * (map.YSize - 1)] = new Cell(CellType.WithCharacter);
                 lst.Add(new Character(map.XSize / 2, i * (map.YSize - 1)));
+                lst[i].CurrentCell = new Cell(CellType.Ship);
             }
-
-
+        }
+        private bool CanMoveInThatCell(GameMap map, Character ch)
+        {
+            if (map[ch.XCoordinate, ch.YCoordinate].Type == CellType.Water)
+                return false;
+            if (map[ch.XCoordinate, ch.YCoordinate].Type == CellType.WithCharacter)
+                return false;
+            return true;
         }
 
         public GameMap Move(TurnInfo info)
@@ -129,27 +206,28 @@ namespace JackalEngine
             Character ch = lst[info.CharacterID];
             if (ch.MoveTo(info.MovingSide))
             {
-                RestoreCell(map, info.MovingSide, ch);
-                SaveCurrentCell(map, ch);
+                if (!CanMoveInThatCell(map, ch))
+                {
+                    ch.OpositeMove(info.MovingSide);
+                }
+                else
+                {
 
-                map[ch.XCoordinate, ch.YCoordinate] = new Cell(CellType.WithCharacter);
+                    RestoreCell(map, info.MovingSide, ch);
+                    SaveCurrentCell(map, ch);
+                    map[ch.XCoordinate, ch.YCoordinate] = new Cell(ch.WithGold ? CellType.CharacterWithGold : CellType.WithCharacter);
+                }
             }
-
-
             return map;
         }
-
-
-
-
 
 
     }
 
     public class GameMap
     {
-        public const int _xSize = 10;
-        public const int _ySize = 10;
+        public const int _xSize = 20;
+        public const int _ySize = 20;
         public int XSize { get { return _xSize; } }
         public int YSize { get { return _ySize; } }
         private Cell[,] map = new Cell[_xSize, _ySize];
@@ -203,7 +281,5 @@ namespace JackalEngine
         {
             return "-------------" + Type.ToString() + "\n";
         }
-
-
     }
 }
