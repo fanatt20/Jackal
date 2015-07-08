@@ -42,7 +42,7 @@ namespace JackalEngine
         public int Gold { get; private set; }
         public int Death { get; private set; }
         public void Die() { Death++; }
-        public void TakeGold() { Gold++;}
+        public void TakeGold() { Gold++; }
         public int XCoordinate { get; private set; }
         public int YCoordinate { get; private set; }
         public bool WithGold { get; set; }
@@ -118,7 +118,7 @@ namespace JackalEngine
 
         private GameMap map = new GameMap();
         private List<Character> lst = new List<Character>();
-
+        public GameMap Map { get { return map; } }
         private void RestoreCell(GameMap map, Side side, Character ch)
         {
             switch (side)
@@ -195,6 +195,8 @@ namespace JackalEngine
             if (map[ch.XCoordinate, ch.YCoordinate].Type == CellType.Water)
                 return false;
             if (map[ch.XCoordinate, ch.YCoordinate].Type == CellType.WithCharacter)
+                return false;
+            if (map[ch.XCoordinate, ch.YCoordinate].Type == CellType.CharacterWithGold)
                 return false;
             return true;
         }

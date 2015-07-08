@@ -14,3 +14,5 @@ C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\ConsoleAppl
 C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
 C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\JackalEngine.dll
 C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\JackalEngine.pdb
+C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\obj\Debug\ConsoleApplication1.Form1.resources
+C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.GenerateResource.Cache

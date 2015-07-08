@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 
 namespace ConsoleApplication1
@@ -14,10 +15,17 @@ namespace ConsoleApplication1
         static int player = 0;
         static void Main(string[] args)
         {
+            
             TurnInfo info;
-            Game game = new Game(1);
+            Game game = new Game(2);
+            Application.Run(new Form1(game));
+            Console.Title = "Jackal";
+            Console.CursorVisible = false;
+        NotExit:
+            PrintMap(game.Map);
             try
             {
+
                 while (true)
                 {
                     info = WaitForTurn();
@@ -28,9 +36,11 @@ namespace ConsoleApplication1
             catch (Exit)
             {
                 Console.WriteLine("Exit");
+                if (Console.ReadKey().Key != ConsoleKey.Enter)
+                {
+                    goto NotExit;
+                                    }
             }
-            Console.ReadKey();
-
         }
 
         private static TurnInfo WaitForTurn()
@@ -56,11 +66,12 @@ namespace ConsoleApplication1
                     side = Side.Left;
                     break;
                 default:
+                    Console.CursorLeft = 0;
                     goto Repeat;
                     break;
             }
-            return new TurnInfo(0, side);
-            //return new TurnInfo(player==0? player++:player--, side);
+            // return new TurnInfo(0, side);
+            return new TurnInfo(player == 0 ? player++ : player--, side);
         }
 
         private static void PrintMap(GameMap map)
@@ -92,7 +103,7 @@ namespace ConsoleApplication1
                     picture = '☼';
                     break;
                 case CellType.Empty:
-                    picture = '♠';
+                    picture = '♦';
                     break;
                 case CellType.WithCharacter:
                     picture = '☺';
