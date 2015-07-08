@@ -41,6 +41,10 @@ namespace JackalEngine
     {
         public int Gold { get; private set; }
         public int Death { get; private set; }
+        public CharInfo GetCharInfo()
+        {
+            return new CharInfo(Gold, Death);
+        }
         public void Die() { Death++; }
         public void TakeGold() { Gold++; }
         public int XCoordinate { get; private set; }
@@ -111,10 +115,43 @@ namespace JackalEngine
         }
 
     }
+    internal class Ship
+    {
+        public int XCoordinate { get; private set; }
+        public int YCoordinate { get; private set; }
+        public List<Character> Crew { get; private set; }
+
+
+    }
+    public class EndTurnInfo
+    {
+        public GameMap Map { get; private set; }
+        public CharInfo[] CharInform { get; private set; }
+        private EndTurnInfo() { }
+        public EndTurnInfo(GameMap map, params CharInfo[] array)
+        {
+            Map = map;
+            CharInform = new CharInfo[array.Length];
+            array.CopyTo(CharInform, 0);
+
+        }
+    }
+    public class CharInfo
+    {
+        public int Death { get; private set; }
+        public int Gold { get; private set; }
+        private CharInfo() { }
+        public CharInfo(int gold, int death)
+        {
+            Death = death;
+            Gold = gold;
+
+        }
+    }
     public class Game
     {
 
-        private int goldMapCapacity = 10;
+        private int goldMapCapacity = 17;
 
         private GameMap map = new GameMap();
         private List<Character> lst = new List<Character>();
@@ -144,22 +181,6 @@ namespace JackalEngine
         {
             int x = ch.XCoordinate;
             int y = ch.YCoordinate;
-            if (map[x, y].Type == CellType.Unreached)
-                GenerateCell(map, x, y);
-            if (map[x, y].Type == CellType.WithGold)
-            {
-                if (!ch.WithGold)
-                {
-                    ch.WithGold = true;
-                    map[x, y] = new Cell(CellType.Empty);
-                }
-            }
-            if (map[x, y].Type == CellType.Ship && ch.WithGold)
-            {
-                ch.WithGold = false;
-                ch.TakeGold();
-            }
-
             ch.CurrentCell = map[ch.XCoordinate, ch.YCoordinate];
         }
 
@@ -179,7 +200,6 @@ namespace JackalEngine
 
 
         }
-
 
         public Game(int charNumber)
         {
@@ -201,7 +221,7 @@ namespace JackalEngine
             return true;
         }
 
-        public GameMap Move(TurnInfo info)
+        public EndTurnInfo Move(TurnInfo info)
         {
             if (info.CharacterID >= lst.Count)
                 throw new ArgumentOutOfRangeException(String.Format("No Character with ID={0}", info.CharacterID));
@@ -214,13 +234,55 @@ namespace JackalEngine
                 }
                 else
                 {
-
                     RestoreCell(map, info.MovingSide, ch);
+                    CheckActionsOnThatCell(map, ch);
                     SaveCurrentCell(map, ch);
                     map[ch.XCoordinate, ch.YCoordinate] = new Cell(ch.WithGold ? CellType.CharacterWithGold : CellType.WithCharacter);
                 }
             }
-            return map;
+            List<CharInfo> chrs = new List<CharInfo>();
+            foreach (var item in lst)
+            {
+                chrs.Add(item.GetCharInfo());
+            }
+            return new EndTurnInfo(map, chrs.ToArray());
+        }
+
+        private void CheckActionsOnThatCell(GameMap map, Character ch)
+        {
+            int x = ch.XCoordinate, y = ch.YCoordinate;
+            if (map[x, y].Type == CellType.Unreached)
+                GenerateCell(map, x, y);
+            if (map[x, y].Type == CellType.WithGold)
+            {
+                if (!ch.WithGold)
+                {
+                    ch.WithGold = true;
+                    map[x, y] = new Cell(CellType.Empty);
+                }
+            }
+            if (map[x, y].Type == CellType.Ship && ch.WithGold)
+            {
+                ch.WithGold = false;
+                ch.TakeGold();
+            }
+
+            if (map[x, y].Type == CellType.WithCharacter || map[x, y].Type == CellType.CharacterWithGold)
+            {
+                var ch2 = FindCharacterByPosition(x, y);
+
+            }
+
+        }
+
+        private Character FindCharacterByPosition(int x, int y)
+        {
+            foreach (var ch in lst)
+            {
+                if (ch.XCoordinate == x && ch.YCoordinate == y)
+                    return ch;
+            }
+            return null;
         }
 
 
