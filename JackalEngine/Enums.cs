@@ -7,6 +7,7 @@
         Up,
         Down
     }
+
     public enum CellType
     {
         Water = 0,
@@ -19,5 +20,4 @@
         Character4,
         Ship
     }
-
 }

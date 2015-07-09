@@ -1,31 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JackalEngine
 {
     internal class Character
     {
-        public int Gold { get; private set; }
-        public int Death { get; private set; }
-        public CharInfo GetCharInfo()
-        {
-            return new CharInfo(Gold, Death, WithGold);
-        }
-        public void Die(int xCoordinate, int yCoordinate)
-        {
-            XCoordinate = xCoordinate;
-            YCoordinate = yCoordinate;
-            Death++;
-        }
-        public void TakeGold() { Gold++; }
-        public int XCoordinate { get; private set; }
-        public int YCoordinate { get; private set; }
-        public bool WithGold { get; set; }
         public Cell CurrentCell;
-        private Character() { }
+
+        private Character()
+        {
+        }
+
         public Character(int xCoordinate, int yCoordinate)
         {
             CurrentCell = new Cell(CellType.Water);
@@ -33,6 +17,30 @@ namespace JackalEngine
             YCoordinate = yCoordinate;
             WithGold = false;
         }
+
+        public int Gold { get; private set; }
+        public int Death { get; private set; }
+        public int XCoordinate { get; private set; }
+        public int YCoordinate { get; private set; }
+        public bool WithGold { get; set; }
+
+        public CharInfo GetCharInfo()
+        {
+            return new CharInfo(Gold, Death, WithGold);
+        }
+
+        public void Die(int xCoordinate, int yCoordinate)
+        {
+            XCoordinate = xCoordinate;
+            YCoordinate = yCoordinate;
+            Death++;
+        }
+
+        public void TakeGold()
+        {
+            Gold++;
+        }
+
         public bool MoveTo(Side side)
         {
             if ((side == Side.Down && YCoordinate > (GameMap._ySize - 2)) ||
@@ -56,9 +64,10 @@ namespace JackalEngine
                     break;
                 default:
                     throw new NotImplementedException("sry");
-             }
+            }
             return true;
         }
+
         public bool OpositeMove(Side side)
         {
             if ((side == Side.Down && YCoordinate < 1) ||
@@ -85,6 +94,5 @@ namespace JackalEngine
             }
             return true;
         }
-
     }
 }

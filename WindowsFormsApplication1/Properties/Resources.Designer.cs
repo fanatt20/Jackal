@@ -81,6 +81,15 @@ namespace WinFormUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Нет.
+        /// </summary>
+        internal static string NoString {
+            get {
+                return ResourceManager.GetString("NoString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Pirate1 {
@@ -127,6 +136,24 @@ namespace WinFormUI.Properties {
             get {
                 object obj = ResourceManager.GetObject("Water", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Да.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Да.
+        /// </summary>
+        internal static string YesString {
+            get {
+                return ResourceManager.GetString("YesString", resourceCulture);
             }
         }
     }

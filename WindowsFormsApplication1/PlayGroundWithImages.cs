@@ -1,66 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using JackalEngine;
-using Resources =WinFormUI.Properties.Resources;
+using WinFormUI.Properties;
+
 namespace WinFormUI
 {
-
     public partial class PlayGroundWithImages : Form
     {
-        private Game game;
-        int player = 0;
-        private int totalPlayers;
-        private int NextPlayer(int currentPlayerID)
-        {
-            switch (totalPlayers)
-            {
-                case 1:
-                    return 0;
-                case 2:
-                    return player == 0 ? player++ : player--;
-                default:
-                    return -1;
+        private readonly Game _game;
+        private readonly int _totalPlayers;
+        private int _player;
 
-            }
-
-        }
         public PlayGroundWithImages(int numberOfPlayers)
         {
-            this.game = new Game(numberOfPlayers);
-            totalPlayers = numberOfPlayers;
+            _game = new Game(numberOfPlayers);
+            _totalPlayers = numberOfPlayers;
             InitializeComponent();
             if (numberOfPlayers < 2)
                 groupBox3.Visible = false;
 
-            for (int i = 0; i < game.Map.XSize; i++)
+            for (var i = 0; i < _game.Map.XSize; i++)
             {
-                DataGridViewImageColumn clmn = new DataGridViewImageColumn();
+                var clmn = new DataGridViewImageColumn();
                 dataGridView1.Columns.Add(clmn);
             }
-            dataGridView1.Rows.Add(game.Map.YSize);
-            PrintMap(game.Map);
+            dataGridView1.Rows.Add(_game.Map.YSize);
+            PrintMap(_game.Map);
         }
 
+        private int NextPlayer(int currentPlayerId)
+        {
+            switch (_totalPlayers)
+            {
+                case 1:
+                    return 0;
+                case 2:
+                    return _player == 0 ? _player++ : _player--;
+                default:
+                    return -1;
+            }
+        }
 
         private void PrintMap(GameMap map)
         {
-            for (int i = 0; i < GameMap._ySize; i++)
+            for (var i = 0; i < GameMap._ySize; i++)
             {
-                for (int j = 0; j < GameMap._xSize; j++)
+                for (var j = 0; j < GameMap._xSize; j++)
                 {
                     dataGridView1[i, j].Value = DrawCell(map[i, j]);
                 }
             }
         }
 
-        private Image DrawCell(Cell cell)
+        private static Image DrawCell(Cell cell)
         {
             Image picture = Resources.Empty;
             switch (cell.Type)
@@ -86,16 +80,10 @@ namespace WinFormUI
             }
             return picture;
         }
-        
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void Form1_KeyPress(object sender, KeyEventArgs e)
         {
-
-            Side side = Side.Down;
+            var side = Side.Down;
             switch (e.KeyCode)
             {
                 case Keys.Up:
@@ -111,10 +99,9 @@ namespace WinFormUI
                     side = Side.Left;
                     break;
             }
-            EndTurnInfo result = game.Move(new TurnInfo(NextPlayer(player), side));
+            var result = _game.Move(new TurnInfo(NextPlayer(_player), side));
             PrintMap(result.ChangedCells);
             SetGameInfo(result.CharInform);
-
         }
 
         private void PrintMap(List<Cell> list)
@@ -129,43 +116,17 @@ namespace WinFormUI
         {
             player1Death.Text = charInfo[0].Death.ToString();
             player1Gold.Text = charInfo[0].Gold.ToString();
-            if (charInfo[0].WithGold)
-            {
-                player1GoldContain.Text = "Да";
-            }
-            else
-            {
-                player1GoldContain.Text = "Нет";
-            }
-            if (groupBox3.Visible)
-            {
-                player2Death.Text = charInfo[1].Death.ToString();
-                player2Gold.Text = charInfo[1].Gold.ToString();
-                if (charInfo[1].WithGold)
-                {
-                    player2GoldContain.Text = "Да";
-                }
-                else
-                {
-                    player2GoldContain.Text = "Нет";
-                }
-            }
+            player1GoldContain.Text = charInfo[0].WithGold ? Resources.YesString : Resources.NoString;
+
+            if (!groupBox3.Visible) return;
+            player2Death.Text = charInfo[1].Death.ToString();
+            player2Gold.Text = charInfo[1].Gold.ToString();
+            player2GoldContain.Text = charInfo[1].WithGold ? Resources.YesString : Resources.NoString;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            ((DataGridView)sender).ClearSelection();
+            ((DataGridView) sender).ClearSelection();
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

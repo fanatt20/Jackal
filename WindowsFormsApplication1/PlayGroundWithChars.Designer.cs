@@ -114,7 +114,6 @@
             label1.Size = new System.Drawing.Size(43, 13);
             label1.TabIndex = 0;
             label1.Text = "Золото";
-            label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -124,7 +123,6 @@
             label2.Size = new System.Drawing.Size(45, 13);
             label2.TabIndex = 1;
             label2.Text = "Смерти";
-            label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 

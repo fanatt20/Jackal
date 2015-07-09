@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JackalEngine
+﻿namespace JackalEngine
 {
     public class TurnInfo
     {
-        public int CharacterID { get; set; }
-        public Side MovingSide { get; set; }
-        private TurnInfo() { }
-        public TurnInfo(int charID, Side moveTo)
+        private TurnInfo()
         {
-            CharacterID = charID;
-            MovingSide = moveTo;
-
         }
+
+        public TurnInfo(int charId, Side moveTo)
+        {
+            CharacterId = charId;
+            MovingSide = moveTo;
+        }
+
+        public int CharacterId { get; set; }
+        public Side MovingSide { get; set; }
     }
 }
