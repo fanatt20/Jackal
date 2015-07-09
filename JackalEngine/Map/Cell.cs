@@ -3,44 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JackalEngine.Map;
-using JackalEngine.Interfaces;
+using JackalEngine;
 
-namespace JackalEngine.Map
+namespace JackalEngine
 {
-    class Cell : ICell
+    public class Cell
     {
-
-        public bool IsOpenend
+        public int XCoord { get; internal set; }
+        public int YCoord { get; internal set; }
+        public CellType Type { get; private set; }
+        public Cell()
         {
-            get;
-            private set;
+            Type = CellType.Hidden;
         }
-
-        public int XCoordinate
+        public Cell(CellType type)
         {
-            get;
-            private set;
+            Type = type;
         }
-
-        public int YCoordinate
+        public override string ToString()
         {
-            get;
-            private set;
+            return "-------------" + Type.ToString() + "\n";
         }
-
-        public ICellType Type
-        {
-            get;
-            private set;
-        }
-
-        public IItem[] HaveItems
-        {
-            get{
-                return items.ToArray();
-            }
-        }
-        private List<IItem> items=new List<IItem>();
     }
 }

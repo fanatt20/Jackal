@@ -13,3 +13,8 @@ C:\Users\Oleg\Source\Repos\Jackal\JackalEngine\bin\Debug\JackalEngine.pdb
 C:\Users\Oleg\Source\Repos\Jackal\JackalEngine\obj\Debug\JackalEngine.csprojResolveAssemblyReference.cache
 C:\Users\Oleg\Source\Repos\Jackal\JackalEngine\obj\Debug\JackalEngine.dll
 C:\Users\Oleg\Source\Repos\Jackal\JackalEngine\obj\Debug\JackalEngine.pdb
+C:\Users\Андрей\Documents\Visual Studio 2013\Projects\CourseWork\Jackal\JackalEngine\bin\Debug\JackalEngine.dll
+C:\Users\Андрей\Documents\Visual Studio 2013\Projects\CourseWork\Jackal\JackalEngine\bin\Debug\JackalEngine.pdb
+C:\Users\Андрей\Documents\Visual Studio 2013\Projects\CourseWork\Jackal\JackalEngine\obj\Debug\JackalEngine.csprojResolveAssemblyReference.cache
+C:\Users\Андрей\Documents\Visual Studio 2013\Projects\CourseWork\Jackal\JackalEngine\obj\Debug\JackalEngine.dll
+C:\Users\Андрей\Documents\Visual Studio 2013\Projects\CourseWork\Jackal\JackalEngine\obj\Debug\JackalEngine.pdb

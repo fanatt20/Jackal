@@ -5,9 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JackalEngine", "JackalEngine\JackalEngine.csproj", "{674DDC0D-2038-4D76-99A0-65E005233E28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{BCF10BD9-3279-450A-9D1D-54D2750EA7FC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{F8823B2F-DF10-4A89-9A33-F6CD786BE149}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormUI", "WindowsFormsApplication1\WinFormUI.csproj", "{F8823B2F-DF10-4A89-9A33-F6CD786BE149}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{674DDC0D-2038-4D76-99A0-65E005233E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{674DDC0D-2038-4D76-99A0-65E005233E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{674DDC0D-2038-4D76-99A0-65E005233E28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BCF10BD9-3279-450A-9D1D-54D2750EA7FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCF10BD9-3279-450A-9D1D-54D2750EA7FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCF10BD9-3279-450A-9D1D-54D2750EA7FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCF10BD9-3279-450A-9D1D-54D2750EA7FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F8823B2F-DF10-4A89-9A33-F6CD786BE149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8823B2F-DF10-4A89-9A33-F6CD786BE149}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8823B2F-DF10-4A89-9A33-F6CD786BE149}.Release|Any CPU.ActiveCfg = Release|Any CPU

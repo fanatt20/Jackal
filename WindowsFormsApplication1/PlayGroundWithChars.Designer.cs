@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace WinFormUI
 {
-    partial class PlayGround
+    partial class PlayGroundWithChars
     {
         /// <summary>
         /// Required designer variable.
