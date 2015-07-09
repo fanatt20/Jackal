@@ -45,16 +45,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="PlayGround - Copy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="PlayGround - Copy.Designer.cs">
+      <DependentUpon>PlayGround - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlayGround.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayGround.Designer.cs">
+      <DependentUpon>PlayGround.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="PlayGround - Copy.resx">
+      <DependentUpon>PlayGround - Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayGround.resx">
+      <DependentUpon>PlayGround.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -83,6 +92,15 @@
       <Project>{674ddc0d-2038-4d76-99a0-65e005233e28}</Project>
       <Name>JackalEngine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Empty.bmp" />
+    <Content Include="Images\Gold.jpg" />
+    <Content Include="Images\Pirate1.jpg" />
+    <Content Include="Images\Pirate2.jpg" />
+    <Content Include="Images\Ship.jpg" />
+    <Content Include="Images\Smoke.jpg" />
+    <Content Include="Images\Water.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,8 +21,10 @@ namespace JackalEngine
         Unreached,
         Empty,
         WithGold,
-        WithCharacter,
-        CharacterWithGold,
+        Character1,
+        Character2,
+        Character3,
+        Character4,
         Ship
     }
     public class TurnInfo
@@ -43,9 +45,14 @@ namespace JackalEngine
         public int Death { get; private set; }
         public CharInfo GetCharInfo()
         {
-            return new CharInfo(Gold, Death);
+            return new CharInfo(Gold, Death, WithGold);
         }
-        public void Die() { Death++; }
+        public void Die(int xCoordinate, int yCoordinate)
+        {
+            XCoordinate = xCoordinate;
+            YCoordinate = yCoordinate;
+            Death++;
+        }
         public void TakeGold() { Gold++; }
         public int XCoordinate { get; private set; }
         public int YCoordinate { get; private set; }
@@ -123,14 +130,19 @@ namespace JackalEngine
 
 
     }
+    class Point
+    {
+        public int XCoordinate;
+    }
     public class EndTurnInfo
     {
-        public GameMap Map { get; private set; }
+
+        public List<Cell> ChangedCells { get; private set; }
         public CharInfo[] CharInform { get; private set; }
         private EndTurnInfo() { }
-        public EndTurnInfo(GameMap map, params CharInfo[] array)
+        public EndTurnInfo(List<Cell> changedCells, params CharInfo[] array)
         {
-            Map = map;
+            ChangedCells = changedCells;
             CharInform = new CharInfo[array.Length];
             array.CopyTo(CharInform, 0);
 
@@ -140,11 +152,13 @@ namespace JackalEngine
     {
         public int Death { get; private set; }
         public int Gold { get; private set; }
+        public bool WithGold { get; private set; }
         private CharInfo() { }
-        public CharInfo(int gold, int death)
+        public CharInfo(int gold, int death, bool withGold)
         {
             Death = death;
             Gold = gold;
+            WithGold = withGold;
 
         }
     }
@@ -205,7 +219,7 @@ namespace JackalEngine
         {
             for (int i = 0; i < charNumber; i++)
             {
-                map[map.XSize / 2, i * (map.YSize - 1)] = new Cell(CellType.WithCharacter);
+                map[map.XSize / 2, i * (map.YSize - 1)] = new Cell(i == 0 ? CellType.Character1 : CellType.Character2);
                 lst.Add(new Character(map.XSize / 2, i * (map.YSize - 1)));
                 lst[i].CurrentCell = new Cell(CellType.Ship);
             }
@@ -214,9 +228,9 @@ namespace JackalEngine
         {
             if (map[ch.XCoordinate, ch.YCoordinate].Type == CellType.Water)
                 return false;
-            if (map[ch.XCoordinate, ch.YCoordinate].Type == CellType.WithCharacter)
+            if (map[ch.XCoordinate, ch.YCoordinate].Type == CellType.Character1)
                 return false;
-            if (map[ch.XCoordinate, ch.YCoordinate].Type == CellType.CharacterWithGold)
+            if (map[ch.XCoordinate, ch.YCoordinate].Type == CellType.Character2)
                 return false;
             return true;
         }
@@ -237,7 +251,7 @@ namespace JackalEngine
                     RestoreCell(map, info.MovingSide, ch);
                     CheckActionsOnThatCell(map, ch);
                     SaveCurrentCell(map, ch);
-                    map[ch.XCoordinate, ch.YCoordinate] = new Cell(ch.WithGold ? CellType.CharacterWithGold : CellType.WithCharacter);
+                    map[ch.XCoordinate, ch.YCoordinate] = new Cell(info.CharacterID==0 ? CellType.Character1 : CellType.Character2);
                 }
             }
             List<CharInfo> chrs = new List<CharInfo>();
@@ -245,7 +259,7 @@ namespace JackalEngine
             {
                 chrs.Add(item.GetCharInfo());
             }
-            return new EndTurnInfo(map, chrs.ToArray());
+            return new EndTurnInfo(map.ChangedCells(true), chrs.ToArray());
         }
 
         private void CheckActionsOnThatCell(GameMap map, Character ch)
@@ -267,7 +281,7 @@ namespace JackalEngine
                 ch.TakeGold();
             }
 
-            if (map[x, y].Type == CellType.WithCharacter || map[x, y].Type == CellType.CharacterWithGold)
+            if (map[x, y].Type == CellType.Character1 || map[x, y].Type == CellType.Character2)
             {
                 var ch2 = FindCharacterByPosition(x, y);
 
@@ -292,6 +306,16 @@ namespace JackalEngine
     {
         public const int _xSize = 20;
         public const int _ySize = 20;
+        private bool readedChangedCell = false;
+        private List<Cell> changedCells = new List<Cell>();
+        public List<Cell> ChangedCells(bool clearColl)
+        {
+            List<Cell> res = new List<Cell>();
+            res.AddRange(changedCells);
+            if (clearColl)
+                changedCells.Clear();
+            return res;
+        }
         public int XSize { get { return _xSize; } }
         public int YSize { get { return _ySize; } }
         private Cell[,] map = new Cell[_xSize, _ySize];
@@ -325,6 +349,9 @@ namespace JackalEngine
             set
             {
                 map[xCoord, yCoord] = value;
+                map[xCoord, yCoord].XCoord = xCoord;
+                map[xCoord, yCoord].YCoord = yCoord;
+                changedCells.Add(map[xCoord, yCoord]);
             }
 
         }
@@ -332,6 +359,8 @@ namespace JackalEngine
     }
     public class Cell
     {
+        public int XCoord { get; internal set; }
+        public int YCoord { get; internal set; }
         public CellType Type { get; private set; }
         public Cell()
         {

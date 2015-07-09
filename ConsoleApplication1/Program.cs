@@ -105,7 +105,7 @@ namespace ConsoleApplication1
                 case CellType.Empty:
                     picture = '♦';
                     break;
-                case CellType.WithCharacter:
+                case CellType.Character:
                     picture = '☺';
                     break;
                 case CellType.CharacterWithGold:

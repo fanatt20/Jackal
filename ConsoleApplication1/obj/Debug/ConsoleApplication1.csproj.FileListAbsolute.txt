@@ -16,3 +16,7 @@ C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\JackalEngin
 C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\bin\Debug\JackalEngine.pdb
 C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\obj\Debug\ConsoleApplication1.Form1.resources
 C:\Users\Андрей\Documents\Jackal\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.GenerateResource.Cache
+C:\Users\Oleg\Source\Repos\Jackal\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Oleg\Source\Repos\Jackal\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Oleg\Source\Repos\Jackal\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Oleg\Source\Repos\Jackal\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache

@@ -41,6 +41,6 @@ namespace JackalEngine.Map
                 return items.ToArray();
             }
         }
-        private List<IItem> items;
+        private List<IItem> items=new List<IItem>();
     }
 }
