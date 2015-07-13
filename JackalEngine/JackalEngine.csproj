@@ -40,7 +40,7 @@
     <Compile Include="Info\EndTurnInfo.cs" />
     <Compile Include="Info\TurnInfo.cs" />
     <Compile Include="Map\Cell.cs" />
-    <Compile Include="Map\GameMap.cs" />
+    <Compile Include="Map\Map.cs" />
     <Compile Include="Player\Character.cs" />
     <Compile Include="Player\Ship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

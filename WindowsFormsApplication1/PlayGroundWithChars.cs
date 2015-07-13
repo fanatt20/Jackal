@@ -19,11 +19,11 @@ namespace WinFormUI
             if (numberOfPlayers < 2)
                 groupBox3.Visible = false;
 
-            for (var i = 0; i < _game.Map.XSize; i++)
+            for (var i = 0; i <Map.XSize; i++)
             {
                 dataGridView1.Columns.Add(i.ToString(), i.ToString());
             }
-            dataGridView1.Rows.Add(_game.Map.YSize);
+            dataGridView1.Rows.Add(Map.YSize);
             PrintMap(_game.Map);
         }
 
@@ -40,11 +40,11 @@ namespace WinFormUI
             }
         }
 
-        private void PrintMap(GameMap map)
+        private void PrintMap(Map map)
         {
-            for (var i = 0; i < GameMap._ySize; i++)
+            for (var i = 0; i < Map.YSize; i++)
             {
-                for (var j = 0; j < GameMap._xSize; j++)
+                for (var j = 0; j < Map.XSize; j++)
                 {
                     dataGridView1[i, j].Value = DrawCell(map[i, j]).ToString();
                 }
